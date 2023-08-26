@@ -1,0 +1,11 @@
+#!name=讯飞星火去水印
+#!desc=去除页面水印
+
+[Script]
+
+页面、APP去水印 = type=http-response,pattern=^https?:\/\/xinghuo\.xfyun\.cn\/static\/js\/.*\.js$,requires-body=1,max-size=-1,script-path=https://gist.githubusercontent.com/Redeembynight/94f741197e8181fd4726986210ca3d2c/raw/9c8b1e18d8a97d1eedd8ad526ff04e5fc8439869/xinghuo.js,script-update-interval=0
+
+小程序去水印 = type=http-response,pattern=^https?:\/\/xinghuo\.xfyun\.cn\/iflygpt-minp\/userInfo$,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/Redeembynight/94f741197e8181fd4726986210ca3d2c/raw/9c8b1e18d8a97d1eedd8ad526ff04e5fc8439869/xinghuo.js,script-update-interval=0
+
+[MITM]
+hostname = %APPEND% xinghuo.xfyun.cn

@@ -1,0 +1,14 @@
+#!name=文心一言去水印
+#!desc=去除页面水印、图片水印
+
+[URL Rewrite]
+#去除AI生成的图片水印
+^http://eb118-file\.cdn\.bcebos\.com/upload/(.*)\?x-bce-process=style/wm_ai http://eb118-file.cdn.bcebos.com/upload/$1 302
+
+[Script]
+APP去水印 = type=http-response,pattern=https://yiyanapp.baidu.com/talk/chat$,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/Redeembynight/46841f31d36d63ebe22d9db8fb3cf5a5/raw/c6b7d59e51bd7b2ae1e751d5ffcee9ce76e9db40/wenxinapp.js,script-update-interval=0
+
+网页去水印 = type=http-response,pattern=https://yiyan.baidu.com/eb/user/info,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/Redeembynight/1a4330f07bf622a46b0dc6d2bf2e35d5/raw/8ae80fecea67c53cb23ca4842a1644c5fe2bcb2a/wenxinweb.js,script-update-interval=0
+
+[MITM]
+hostname = %APPEND% yiyan.baidu.com

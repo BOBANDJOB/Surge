@@ -1,0 +1,28 @@
+#!name=腾讯视频净化
+#!desc=2023-08-02
+
+[General]
+force-http-engine-hosts = %APPEND% <ip-address>,<ip-address>:49155
+
+[Rule]
+AND,((PROTOCOL,HTTPS), (DOMAIN,iacc.qq.com)),REJECT-NO-DROP
+
+# 腾讯视频
+DOMAIN,adsmind.gdtimg.com,REJECT
+DOMAIN,btrace.qq.com,REJECT
+DOMAIN,info6.video.qq.com,REJECT
+DOMAIN,ios.video.mpush.qq.com,REJECT
+DOMAIN,mtrace.qq.com,REJECT
+DOMAIN,pgdt.gtimg.cn,DIRECT
+
+[Map Local]
+# > 开屏
+^http:\/\/pgdt\.gtimg\.cn data="xxxx.jpg"
+^http:\/\/.+\.tc\.qq\.com data="https://raw.githubusercontent.com/mieqq/mieqq/master/reject-dict.json"
+
+[Script]
+
+视频广告 = type=http-request,pattern=^(https:\/\/i\.video|http:\/\/iacc)\.qq\.com\/$,requires-body=0,max-size=0,script-path=https://raw.githubusercontent.com/chengkongyiban/shadowrocket/main/scripts/Tx.js
+
+[MITM]
+hostname = %APPEND% i.video.qq.com,iacc.qq.com
