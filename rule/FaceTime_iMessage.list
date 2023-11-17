@@ -1,0 +1,5 @@
+# > Apple facetime iMessage
+DOMAIN,service.ess.apple.com
+DOMAIN,init.ess.apple.com
+DOMAIN,static.ess.apple.com
+DOMAIN-SUFFIX,ess.apple.com
